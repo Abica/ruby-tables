@@ -111,6 +111,43 @@ class Table
     process arg
   end
 
+  alias push <<
+
+  # removes and returns the last non pair element
+  #
+  #   t = Table[ 1, 2, 3 ]
+  #
+  #   t.pop #=> 3
+  #   t.size #=> 2
+  def pop
+    @values.pop
+  end
+
+  # removes and returns the first non pair element
+  #
+  #   t = Table[ 1, 2, 3 ]
+  #
+  #   t.shift #=> 1
+  #   t.size #=> 2
+  def shift
+    @values.shift
+  end
+
+  # deletes a key or index from a table
+  #
+  #   t = Table[ 1000, 2000, 3000, { :a => 50, :b => 60 } ] 
+  #
+  #   t.delete 1 #=> 2000
+  #   t.delete :b #=> 60
+  #   t #=> Table[1000, 3000, {:a=>50}]
+  def delete key
+    if key.kind_of? Integer
+      @values.delete_at key
+    else
+      @records.delete key
+    end
+  end
+
   # combines 2 tables
   #
   #   t = Table[ :a => 4, :b => 5 ] + Table[ 1, 2, 3, 4, { :c => 4 } ]

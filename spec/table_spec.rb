@@ -91,6 +91,37 @@ describe Table do
     end
   end
 
+  describe "#pop" do
+    it "removes and returns the last non pair element" do
+      t = Table[ 1, 2, 3, 4 ]
+      t.pop.should == 4
+      t.size.should == 3
+    end
+  end
+
+  describe "#shift" do
+    it "removes and returns the first non pair element" do
+      t = Table[ 1, 2, 3, 4 ]
+      t.shift.should == 1
+      t.size.should == 3
+    end
+  end
+
+  describe "#delete" do
+    it "removes and returns an index" do
+      t = Table[ 1, 2, 3, 4 ]
+      t.delete( 1 ).should == 2
+      t.size.should == 3
+      t.to_a.should == [ 1, 3, 4 ]
+    end
+
+    it "removes and returns an key" do
+      t = Table[ :a => 1, :b => 5 ]
+      t.delete( :b ).should == 5
+      t.should_not have_key( :b )
+    end
+  end
+
   describe "#+" do
     before :all do
       @t1 = Table[ 1, 2, 3, { :a => 5, :b => 6 } ]
