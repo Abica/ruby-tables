@@ -33,6 +33,14 @@ in when you create a key well out of bounds. This is not unlike typical ruby Arr
   ary[ 10 ] = 2
   ary #=> [ 1, nil, nil, nil, nil, nil, nil, nil, nil, nil, 2 ]
 
+= Usage
+Install it:
+  gem install ruby-tables
+
+Use it:
+  require "rubygems"
+  require "table"
+
 = Examples
   # as hashes with convient dot notation for keys
   t1 = Table[ :something => 50, :else => 100 ]
@@ -41,6 +49,17 @@ in when you create a key well out of bounds. This is not unlike typical ruby Arr
   t1.something #=> 100
   t1.some_new_key = "sdsdsd"
   t1.some_new_key #=> "sdsdsd"
+  t1.users = Table[ *%w{ Tom Dick Harry }.map { | n | Table[ :name => n ] } ]
+
+  t1.users.first.name #=> Tom
+  t1.users.first.name = "Alex"
+  t1.users.each do | user |
+    puts user.name
+  end
+
+  #=> Alex
+  #=> Dick
+  #=> Harry
 
   # as a combination of an array and a hash
   t2 = Table[ 1, 2, 3, 4, 5, { :a => 1000, :b => 2000 }, 6, 7, { :c => 50, :d => 60 }, 8, 9 ]
@@ -53,6 +72,8 @@ in when you create a key well out of bounds. This is not unlike typical ruby Arr
 
   # tables can be concatenated
   t3 = t1 + t2
+
+  # you can access the array elements or the hash elements as their underlying structures
   t3.pairs #=> { :something => 50, :else => 100, :a => 1000, :b => 2000, :c => 50, :d => 60 }
   t3.to_a #=> [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
   t3.inject { |sum, i | sum + i } #=> 45

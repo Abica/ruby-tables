@@ -255,7 +255,7 @@ class Table
     str = []
 
     str << map { | item | item.inspect } if any?
-    str << "{#{ hsh.map { | key, val | "#{ key.inspect }=>#{ val.inspect }" } }}" if hsh.any?
+    str << "{#{ hsh.map { | key, val | "#{ key.inspect }=>#{ val.inspect }" }.join( ", " ) }}" if hsh.any?
 
     "Table[#{ str.join( ", " ) }]"
   end
