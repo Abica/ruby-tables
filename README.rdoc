@@ -6,6 +6,28 @@ Tables are essentially a combination of hashes and arrays.
 They're more for convenience than anything else, but they provide setters and getters
 for symbolized keys in hashes and uniform hash and array like access.
 
+= Caveats
+As in lua, hash keys cannot be numeric indices. If you intend to use numeric hash keys,
+they should be inside an array, such as:
+  Table[ [ 2 ] => 4 ]
+
+Unlike in lua, where an error is raised if you attempt to use numerical keys, ruby-tables
+will change all numerical keys into [ index ] as shown above.
+
+That is:
+  t = Table[ 1, 2, 3, { 4 => 5 } ]
+  t[ 4 ] = 5
+  t.pairs #=> { [ 4 ] => 5 }
+  t.to_a #=> [ 1, 2, 3, nil, 5 ]
+  t[ [ 4 ] ] = 50
+  t.pairs #=> { [ 4 ] => 50 }
+
+Notice above that index 3 was set to a nil value. That's because numeric indexes are filled
+in when you create a key well out of bounds. This is not unlike typical ruby Arrays:
+  ary = [ 1 ]
+  ary[ 10 ] = 2
+  ary #=> [ 1, nil, nil, nil, nil, nil, nil, nil, nil, nil, 2 ]
+
 = Examples
   # as hashes with convient dot notation for keys
   t1 = Table[ :something => 50, :else => 100 ]

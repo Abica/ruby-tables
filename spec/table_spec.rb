@@ -148,6 +148,21 @@ describe Table do
     end
   end
 
+  describe "#keys" do
+    it "returns an array of all hash keys" do
+      pairs = @table.pairs
+      [ :k, :v ].each do | key |
+        pairs.should have_key( key )
+      end
+    end
+  end
+
+  describe "#values" do
+    it "returns an array of all hash values" do
+      @table.values.sort.should == [ 4, 10 ]
+    end
+  end
+
   describe "setters for hash keys" do
     it "should add a key if one doesn't exist" do
       key = :super_long_key_name
@@ -167,7 +182,7 @@ describe Table do
   end
 
   describe "getters for hash keys" do
-    it "returns the value for an key" do
+    it "returns the value for a key" do
       @table.v.should == 10
     end
   end

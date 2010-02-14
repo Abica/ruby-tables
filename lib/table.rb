@@ -68,6 +68,14 @@ class Table
     @records
   end
 
+  def keys
+    @records.keys
+  end
+
+  def values
+    @records.values
+  end
+
   private
     def process *args
       args.each do | arg |
@@ -81,6 +89,7 @@ class Table
 
     def process_hash hsh
       hsh.each do | key, value |
+        key = [ key ] if key.is_a? Integer
         @records[ key ] = value
 
         next unless key.is_a? Symbol
