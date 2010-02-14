@@ -27,8 +27,11 @@ describe Table do
       @table[ :v ].should == @args[ 8 ][ :v ]
     end
 
-    it "returns an array when sliced" do
+    it "returns an array when sliced with a range" do
       @table[ 1..3 ].should == @array_vals[ 1..3 ]
+    end
+
+    it "returns an array when sliced with a start and length" do
       @table[ 4, 5 ].should == @array_vals[ 4, 5 ]
     end
   end
@@ -149,8 +152,11 @@ describe Table do
   end
 
   describe "#slice" do
-    it "returns an sub array based" do
+    it "returns a sub array based on a range" do
       @table.slice( 1..3 ).should == @array_vals.slice( 1..3 )
+    end
+
+    it "returns a sub array based on a start and length" do
       @table.slice( 4, 5 ).should == @array_vals.slice( 4, 5 )
     end
   end

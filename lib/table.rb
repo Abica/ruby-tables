@@ -214,9 +214,12 @@ class Table
   end
 
   def inspect
+    hsh = pairs
     str = []
-    str << map { | i | i.inspect } if any?
-    str << "{#{ pairs.map { | k, v | "#{ k.inspect }=>#{ v.inspect }" } }}" if pairs.any?
+
+    str << map { | item | item.inspect } if any?
+    str << "{#{ hsh.map { | key, val | "#{ key.inspect }=>#{ val.inspect }" } }}" if hsh.any?
+
     "Table[#{ str.join( ", " ) }]"
   end
 
@@ -242,18 +245,17 @@ class Table
         key = [ key ] if key.is_a? Integer
         @records[ key ] = value
 
-        next unless key.is_a? Symbol
-        next if respond_to? key and respond_to? "#{ key }="
+        if key.is_a? Symbol and not respond_to? "#{ key }="
+          instance_eval <<-EOM
+            def #{ key }
+              @records[ :#{ key } ]
+            end
 
-        instance_eval <<-EOM
-          def #{ key }
-            @records[ :#{ key } ]
-          end
-
-          def #{ key }= value
-            @records[ :#{ key } ] = value
-          end
-        EOM
+            def #{ key }= value
+              @records[ :#{ key } ] = value
+            end
+          EOM
+        end
       end
     end
 
