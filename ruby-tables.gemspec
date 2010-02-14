@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Nicholas Wright"]
   s.date = %q{2010-02-14}
-  s.description = %q{A table data structure implemented in ruby}
+  s.description = %q{A table data structure implemented in Ruby}
   s.email = %q{nick.loves.rails@gmail.com}
   s.extra_rdoc_files = [
     "README.rdoc"
@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
-  s.summary = %q{Ruby implementation of lua tables}
+  s.summary = %q{Lua tables for Ruby}
   s.test_files = [
     "spec/spec_helper.rb",
      "spec/table_spec.rb"
