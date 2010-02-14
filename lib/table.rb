@@ -34,7 +34,7 @@ class Table
   # takes a comma separated list of arrays and hashes and returns a table
   #
   #   t = Table[ 1, 2, 3, 4, { :a => 3, :b => 5 }, 7, 8, { :c => 33 } ]
-  #   t #=> Table[1, 2, 3, 4, 7, 8, :a=>3, :b=>5, :c=>33]
+  #   t #=> Table[1, 2, 3, 4, 7, 8, {:a=>3, :b=>5, :c=>33}]
   def self.[] *args
     new *args
   end

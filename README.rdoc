@@ -10,7 +10,9 @@ Any methods from the Enumerable module should work and will treat the table as a
 ignoring any pairs inside it.
 
 = Caveats
-As in lua, hash keys cannot be numeric indices. If you intend to use numeric hash keys,
+Like a hash, the order for paired objects is not guaranteed.
+
+Also, as in lua, hash keys cannot be numeric indices. If you intend to use numeric hash keys,
 they should be inside an array, such as:
   Table[ [ 2 ] => 4 ]
 
