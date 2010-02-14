@@ -3,20 +3,29 @@ This library provides a ruby implementation of a Table data structure from lua.
 
 Tables are essentially a combination of hashes and arrays.
 
+They're more for convenience than anything else, but they provide setters and getters
+for symbolized keys in hashes and uniform hash and array like access.
+
 = Examples
   # as hashes with convient dot notation for keys
-  t = Table[ :something => 50, :else => 100 ]
-  t.something #=> 50
-  t.something = 100
-  t.something #=> 100
-  t.some_new_key = "sdsdsd"
-  t.some_new_key #=> "sdsdsd"
+  t1 = Table[ :something => 50, :else => 100 ]
+  t1.something #=> 50
+  t1.something = 100
+  t1.something #=> 100
+  t1.some_new_key = "sdsdsd"
+  t1.some_new_key #=> "sdsdsd"
 
   # as a combination of an array and a hash
-  t = Table[ 1, 2, 3, 4, 5, { :a => 1000, :b => 2000 }, 6, 7, { :c => 50, :d => 60 }, 8, 9 ]
+  t2 = Table[ 1, 2, 3, 4, 5, { :a => 1000, :b => 2000 }, 6, 7, { :c => 50, :d => 60 }, 8, 9 ]
 
   # the size method returns the number of array values inside the table, this is identical
   # to lua's length operator (#table)
-  t.size #=> 9
+  t2.size #=> 9
   
-  t.each_pair { | k, v | print k } #=> abcd
+  t2.each_pair { | k, v | print k } #=> abcd
+
+  # tables can be concatenated
+  t3 = t1 + t2
+  t3.pairs #=> { :something => 50, :else => 100, :a => 1000, :b => 2000, :c => 50, :d => 60 }
+  t3.to_a #=> [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  t3.inject { |sum, i | sum + i } #=> 45
