@@ -1,0 +1,22 @@
+= Description
+This library provides a ruby implementation of a Table data structure from lua.
+
+Tables are essentially a combination of hashes and arrays.
+
+= Examples
+  # as hashes with convient dot notation for keys
+  t = Table[ :something => 50, :else => 100 ]
+  t.something #=> 50
+  t.something = 100
+  t.something #=> 100
+  t.some_new_key = "sdsdsd"
+  t.some_new_key #=> "sdsdsd"
+
+  # as a combination of an array and a hash
+  t = Table[ 1, 2, 3, 4, 5, { :a => 1000, :b => 2000 }, 6, 7, { :c => 50, :d => 60 }, 8, 9 ]
+
+  # the size method returns the number of array values inside the table, this is identical
+  # to lua's length operator (#table)
+  t.size #=> 9
+  
+  t.each_pair { | k, v | print k } #=> abcd
