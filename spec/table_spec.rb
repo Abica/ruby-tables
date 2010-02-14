@@ -83,6 +83,22 @@ describe Table do
     end
   end
 
+  describe "#+" do
+    before :all do
+      @t1 = Table[ 1, 2, 3, { :a => 5, :b => 6 } ]
+      @t2 = Table[ 4, 5, { :c => 7, :d => 8 }, 6 ]
+      @t3 = @t1 + @t2
+    end
+
+    it "should combine 2 tables together" do
+      @t3.to_a.should == [ 1, 2, 3, 4, 5, 6 ]
+      pairs = @t3.pairs
+      [ :a, :b, :c, :d ].each do | key |
+        pairs.should have_key( key )
+      end
+    end
+  end
+
   describe "#first" do
     it "should return the first array element" do
       t = Table[ *50..80 ]
@@ -120,6 +136,15 @@ describe Table do
       t = Table[ *rand_vals ]
       t.to_a.should_not == sorted_vals
       t.sort.should == sorted_vals
+    end
+  end
+
+  describe "#pairs" do
+    it "returns a hash of all of the key => value pairs" do
+      pairs = @table.pairs
+      [ :k, :v ].each do | key |
+        pairs.should have_key( key )
+      end
     end
   end
 

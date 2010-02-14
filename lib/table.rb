@@ -32,6 +32,8 @@ class Table
   end
 
   def + other
+    values = self.to_a + other.to_a 
+    Table[ self.pairs, other.pairs, *values ]
   end
 
   def first
@@ -60,6 +62,10 @@ class Table
 
   def each_key &block
     @records.each_key &block
+  end
+
+  def pairs
+    @records
   end
 
   private
