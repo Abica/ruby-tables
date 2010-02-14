@@ -12,6 +12,7 @@ begin
     gem.homepage = "http://github.com/Abica/ruby-tables"
     gem.authors = [ "Nicholas Wright" ]
     gem.add_development_dependency "rspec", ">= 1.2.2"
+    gem.has_rdoc = true
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
