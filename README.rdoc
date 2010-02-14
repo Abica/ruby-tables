@@ -56,3 +56,23 @@ in when you create a key well out of bounds. This is not unlike typical ruby Arr
   t3.pairs #=> { :something => 50, :else => 100, :a => 1000, :b => 2000, :c => 50, :d => 60 }
   t3.to_a #=> [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
   t3.inject { |sum, i | sum + i } #=> 45
+
+  # other examples
+  t = Table[ 1, 2, 3, 4, { :a => "1", :b => "2" }, 7, 8 ]
+  t #=> Table[1, 2, 3, 4, 7, 8, {:b=>"2", :a=>"1"}]
+
+  t.size #=> 8
+  t.b #=> "2"
+
+  t.b = Table[ 255, 0, 0, { :color => "red" } ]
+  t.b.color #=> "red"
+  r, b, g = *t.b
+  print r, g, b #=> 25500
+
+  t #=> Table[1, 2, 3, 4, 7, 8, {:b=>Table[255, 0, 0, {:color=>"red"}], :a=>"1", :c=>"3"}]
+
+  t << %{ a b c d }
+  t.last #=> ["a", "b", "c", "d"]
+  t[ -3 ] #=> 7
+
+  t #=> Table[1, 2, 3, 4, 7, 8, ["a", "b", "c", "d"], {:b=>Table[255, 0, 0, {:color=>"red"}], :a=>"1", :c=>"3"}]
