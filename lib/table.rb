@@ -55,6 +55,11 @@ class Table
   #
   #   t.a #=> 4
   #   t.b #=> 5
+  #
+  # array slicing can also be performed:
+  #
+  #   t[ 1, 2 ] #=> [2, "string"]
+  #   t[ 1..4 ] #=> [2, "string", 3, 4]
   def [] key, *rest
     return @values.slice( key, *rest ) if rest.any?
 
