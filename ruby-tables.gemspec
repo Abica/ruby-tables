@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ruby-tables}
-  s.version = "0.1.3"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Nicholas Wright"]
   s.date = %q{2010-02-14}
-  s.description = %q{A table data structure implemented in Ruby}
+  s.description = %q{The table data structure from lua implemented in Ruby}
   s.email = %q{nick.loves.rails@gmail.com}
   s.extra_rdoc_files = [
     "README.rdoc"

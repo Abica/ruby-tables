@@ -9,7 +9,7 @@ begin
     gem.version = version
     gem.name = "ruby-tables"
     gem.summary = %Q{Lua tables for Ruby}
-    gem.description = %Q{A table data structure implemented in Ruby}
+    gem.description = %Q{The table data structure from lua implemented in Ruby}
     gem.email = "nick.loves.rails@gmail.com"
     gem.homepage = "http://github.com/Abica/ruby-tables"
     gem.authors = [ "Nicholas Wright" ]
