@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Table</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Table</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/table_rb.html">
+                lib/table.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Implements a table data structure
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000006">+</a>&nbsp;&nbsp;
+      <a href="#M000005">&lt;&lt;</a>&nbsp;&nbsp;
+      <a href="#M000003">[]</a>&nbsp;&nbsp;
+      <a href="#M000001">[]</a>&nbsp;&nbsp;
+      <a href="#M000004">[]=</a>&nbsp;&nbsp;
+      <a href="#M000011">each</a>&nbsp;&nbsp;
+      <a href="#M000014">each_key</a>&nbsp;&nbsp;
+      <a href="#M000013">each_pair</a>&nbsp;&nbsp;
+      <a href="#M000007">first</a>&nbsp;&nbsp;
+      <a href="#M000016">keys</a>&nbsp;&nbsp;
+      <a href="#M000008">last</a>&nbsp;&nbsp;
+      <a href="#M000010">length</a>&nbsp;&nbsp;
+      <a href="#M000002">new</a>&nbsp;&nbsp;
+      <a href="#M000015">pairs</a>&nbsp;&nbsp;
+      <a href="#M000009">size</a>&nbsp;&nbsp;
+      <a href="#M000012">sort</a>&nbsp;&nbsp;
+      <a href="#M000017">values</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">Enumerable</span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000001" class="method-detail">
+        <a name="M000001"></a>
+
+        <div class="method-heading">
+          <a href="#M000001" class="method-signature">
+          <span class="method-name">[]</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+takes a comma separated list of arrays and hashes and returns a table
+</p>
+<p>
+example:
+</p>
+<pre>
+  Table[ 1, 2, 3, 4, { :a =&gt; 3, :b =&gt; 5 }, 7, 8, { :c =&gt; 33 } ]
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000001-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000001-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/table.rb, line 9</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-operator">[]</span> <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>
+    <span class="ruby-identifier">new</span> <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
+
+        <div class="method-heading">
+          <a href="#M000002" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000002-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000002-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/table.rb, line 13</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>
+    <span class="ruby-ivar">@values</span> = []
+    <span class="ruby-ivar">@records</span> = {}
+    <span class="ruby-identifier">process</span> <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
+
+        <div class="method-heading">
+          <a href="#M000006" class="method-signature">
+          <span class="method-name">+</span><span class="method-args">(other)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+combines 2 tables
+</p>
+<pre>
+  Table[ :a =&gt; 4, :b =&gt; 5 ] + Table[ 1, 2, 3, 4, { :c =&gt; 4 } ]
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000006-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000006-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/table.rb, line 76</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">other</span>
+    <span class="ruby-identifier">values</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">to_a</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">to_a</span> 
+    <span class="ruby-constant">Table</span>[ <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">pairs</span>, <span class="ruby-identifier">other</span>.<span class="ruby-identifier">pairs</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">values</span> ]
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="#M000005" class="method-signature">
+          <span class="method-name">&lt;&lt;</span><span class="method-args">(arg)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+add a hash or value to this table
+</p>
+<pre>
+  t = Table[ 1, 2, 3 ]
+  t &lt;&lt; { :a =&gt; 4, :b =&gt; 4 }
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000005-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000005-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/table.rb, line 69</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">arg</span>
+    <span class="ruby-identifier">process</span> <span class="ruby-identifier">arg</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
+
+        <div class="method-heading">
+          <a href="#M000003" class="method-signature">
+          <span class="method-name">[]</span><span class="method-args">(key)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns the value corresponding to the index or key
+</p>
+<pre>
+  t = Table[ 1, 2, &quot;string&quot;, { :a =&gt; 4, :b =&gt; 5 }, 3, 4 ]
+  t[ 2 ] #=&gt; &quot;string&quot;
+  t[ :a ] #=&gt; 4
+</pre>
+<p>
+symbolized <a href="Table.html#M000016">keys</a> are also accessible via
+dot notation:
+</p>
+<pre>
+  t.a #=&gt; 4
+  t.b #=&gt; 5
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000003-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000003-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/table.rb, line 29</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]</span> <span class="ruby-identifier">key</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Integer</span>
+      <span class="ruby-ivar">@values</span>[ <span class="ruby-identifier">key</span> ]
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-ivar">@records</span>[ <span class="ruby-identifier">key</span> ]
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="#M000004" class="method-signature">
+          <span class="method-name">[]=</span><span class="method-args">(key, value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+updates the value for a given key or index if no entry exists for the given
+key or index then one is created
+</p>
+<pre>
+  t = Table[ :a =&gt; &quot;abcde&quot;, :b =&gt; 44332211 ]
+  t[ :a ] = 43
+  t[ :a ] #=&gt; 43
+  t[ 0 ] = 54
+  t.first #=&gt; 54
+</pre>
+<p>
+note that like an array, if you insert a value into a table at an index
+that doesn&#8216;t yet exist, any gaps will be filled in with nil such as:
+</p>
+<pre>
+  t[ 5 ] = 100
+  t.to_a #=&gt; [ 54, nil, nil, nil, 100 ]
+</pre>
+<p>
+symbolized <a href="Table.html#M000016">keys</a> also have setters so that
+you can use dot notation:
+</p>
+<pre>
+  t.a = &quot;bbcec&quot;
+  t.a #=&gt; &quot;bbcec&quot;
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000004-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/table.rb, line 57</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]=</span> <span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Integer</span>
+      <span class="ruby-ivar">@values</span>[ <span class="ruby-identifier">key</span> ] = <span class="ruby-identifier">value</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">process_hash</span> <span class="ruby-identifier">key</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">value</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
+
+        <div class="method-heading">
+          <a href="#M000011" class="method-signature">
+          <span class="method-name">each</span><span class="method-args">(&amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+iterate through <a href="Table.html#M000011">each</a> of the array <a
+href="Table.html#M000017">values</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000011-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000011-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/table.rb, line 108</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each</span> <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+    <span class="ruby-ivar">@values</span>.<span class="ruby-identifier">each</span> <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000014" class="method-detail">
+        <a name="M000014"></a>
+
+        <div class="method-heading">
+          <a href="#M000014" class="method-signature">
+          <span class="method-name">each_key</span><span class="method-args">(&amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+iterate through the hash <a href="Table.html#M000016">keys</a> in the table
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000014-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000014-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/table.rb, line 126</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_key</span> <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+    <span class="ruby-ivar">@records</span>.<span class="ruby-identifier">each_key</span> <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000013" class="method-detail">
+        <a name="M000013"></a>
+
+        <div class="method-heading">
+          <a href="#M000013" class="method-signature">
+          <span class="method-name">each_pair</span><span class="method-args">(&amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+iterate through the key =&gt; value <a href="Table.html#M000015">pairs</a>
+in the table
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000013-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000013-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/table.rb, line 121</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">each_pair</span> <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+    <span class="ruby-ivar">@records</span>.<span class="ruby-identifier">each_pair</span> <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+          <a href="#M000007" class="method-signature">
+          <span class="method-name">first</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns the <a href="Table.html#M000007">first</a> non pair item in the
+table
+</p>
+<pre>
+  t = Table[ { :a =&gt; 4 }, 1, 2, 3, 4, { :b =&gt; 4, :c =&gt; 23 } ]
+  t.first #=&gt; 1
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000007-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000007-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/table.rb, line 85</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">first</span>
+    <span class="ruby-ivar">@values</span>.<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000016" class="method-detail">
+        <a name="M000016"></a>
+
+        <div class="method-heading">
+          <a href="#M000016" class="method-signature">
+          <span class="method-name">keys</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+return an array of all hash <a href="Table.html#M000016">keys</a> in the
+table
+</p>
+<pre>
+  t = Table[ 1, 2, { :a =&gt; 55, :b =&gt; 77 }, 3, { :c =&gt; 22 } ]
+  t.keys #=&gt; [ :a, :b, :c ]
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000016-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000016-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/table.rb, line 142</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">keys</span>
+    <span class="ruby-ivar">@records</span>.<span class="ruby-identifier">keys</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <a href="#M000008" class="method-signature">
+          <span class="method-name">last</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns the <a href="Table.html#M000008">last</a> non pair item in the
+table
+</p>
+<pre>
+  t = Table[ { :a =&gt; 4 }, 1, 2, 3, 4, { :b =&gt; 4, :c =&gt; 23 } ]
+  t.last #=&gt; 4
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000008-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000008-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/table.rb, line 93</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">last</span>
+    <span class="ruby-ivar">@values</span>.<span class="ruby-identifier">last</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <span class="method-name">length</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Table.html#M000009">size</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000015" class="method-detail">
+        <a name="M000015"></a>
+
+        <div class="method-heading">
+          <a href="#M000015" class="method-signature">
+          <span class="method-name">pairs</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns a hash of all key =&gt; value <a
+href="Table.html#M000015">pairs</a> inside the table
+</p>
+<pre>
+  t = Table[ 1, { :a =&gt; 4 }, 2, { :b =&gt; 543 } ]
+  t.pairs #=&gt; { :a =&gt; 4, :b =&gt; 543 }
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000015-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000015-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/table.rb, line 134</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pairs</span>
+    <span class="ruby-ivar">@records</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
+
+        <div class="method-heading">
+          <a href="#M000009" class="method-signature">
+          <span class="method-name">size</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns the <a href="Table.html#M000010">length</a> of all integer indexes
+</p>
+<pre>
+  t = Table[ 1, 2, { :b =&gt; 4 }, 3, 4 ]
+  t.size #=&gt; 4
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000009-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000009-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/table.rb, line 101</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">size</span>
+    <span class="ruby-ivar">@values</span>.<span class="ruby-identifier">size</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
+
+        <div class="method-heading">
+          <a href="#M000012" class="method-signature">
+          <span class="method-name">sort</span><span class="method-args">(&amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="Table.html#M000012">sort</a> the array <a
+href="Table.html#M000017">values</a>
+</p>
+<pre>
+  t = Table[ 2, 23, 54, { :a =&gt; 4 }, 49 ]
+  t.sort #=&gt; [ 2, 23, 49, 54 ]
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000012-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000012-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/table.rb, line 116</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sort</span> <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+    <span class="ruby-ivar">@values</span>.<span class="ruby-identifier">sort</span> <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000017" class="method-detail">
+        <a name="M000017"></a>
+
+        <div class="method-heading">
+          <a href="#M000017" class="method-signature">
+          <span class="method-name">values</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns an array of all hash <a href="Table.html#M000017">values</a> in the
+table
+</p>
+<pre>
+  t = Table[ 1, 2, { :a =&gt; 55, :b =&gt; 77 }, 3, { :c =&gt; 22 } ]
+  t.values #=&gt; [ 55, 77, 22 ]
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000017-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000017-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/table.rb, line 150</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">values</span>
+    <span class="ruby-ivar">@records</span>.<span class="ruby-identifier">values</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

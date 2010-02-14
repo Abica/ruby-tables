@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README.rdoc</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README.rdoc</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README.rdoc
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Sat Feb 13 20:28:27 -0700 2010</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>Description</h1>
+<p>
+This library provides a ruby implementation of a <a
+href="../classes/Table.html">Table</a> data structure from lua.
+</p>
+<p>
+Tables are essentially a combination of hashes and arrays.
+</p>
+<p>
+They&#8216;re more for convenience than anything else, but they provide
+setters and getters for symbolized keys in hashes and uniform hash and
+array like access.
+</p>
+<p>
+Any methods from the Enumerable module should work and will treat the table
+as an array, ignoring any pairs inside it.
+</p>
+<h1>Caveats</h1>
+<p>
+As in lua, hash keys cannot be numeric indices. If you intend to use
+numeric hash keys, they should be inside an array, such as:
+</p>
+<pre>
+  Table[ [ 2 ] =&gt; 4 ]
+</pre>
+<p>
+Unlike in lua, where an error is raised if you attempt to use numerical
+keys, ruby-tables will change all numerical keys into [ index ] as shown
+above.
+</p>
+<p>
+That is:
+</p>
+<pre>
+  t = Table[ 1, 2, 3, { 4 =&gt; 5 } ]
+  t[ 4 ] = 5
+  t.pairs #=&gt; { [ 4 ] =&gt; 5 }
+  t.to_a #=&gt; [ 1, 2, 3, nil, 5 ]
+  t[ [ 4 ] ] = 50
+  t.pairs #=&gt; { [ 4 ] =&gt; 50 }
+</pre>
+<p>
+Notice above that index 3 was set to a nil value. That&#8216;s because
+numeric indexes are filled in when you create a key well out of bounds.
+This is not unlike typical ruby Arrays:
+</p>
+<pre>
+  ary = [ 1 ]
+  ary[ 10 ] = 2
+  ary #=&gt; [ 1, nil, nil, nil, nil, nil, nil, nil, nil, nil, 2 ]
+</pre>
+<h1>Examples</h1>
+<pre>
+  # as hashes with convient dot notation for keys
+  t1 = Table[ :something =&gt; 50, :else =&gt; 100 ]
+  t1.something #=&gt; 50
+  t1.something = 100
+  t1.something #=&gt; 100
+  t1.some_new_key = &quot;sdsdsd&quot;
+  t1.some_new_key #=&gt; &quot;sdsdsd&quot;
+
+  # as a combination of an array and a hash
+  t2 = Table[ 1, 2, 3, 4, 5, { :a =&gt; 1000, :b =&gt; 2000 }, 6, 7, { :c =&gt; 50, :d =&gt; 60 }, 8, 9 ]
+
+  # the size method returns the number of array values inside the table, this is identical
+  # to lua's length operator (#table)
+  t2.size #=&gt; 9
+
+  t2.each_pair { | k, v | print k } #=&gt; abcd
+
+  # tables can be concatenated
+  t3 = t1 + t2
+  t3.pairs #=&gt; { :something =&gt; 50, :else =&gt; 100, :a =&gt; 1000, :b =&gt; 2000, :c =&gt; 50, :d =&gt; 60 }
+  t3.to_a #=&gt; [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  t3.inject { |sum, i | sum + i } #=&gt; 45
+</pre>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
