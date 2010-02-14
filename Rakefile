@@ -4,10 +4,10 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.version = "0.1.0"
+    gem.version = "0.1.1"
     gem.name = "ruby-tables"
-    gem.summary = %Q{Ruby implementation of lua tables}
-    gem.description = %Q{A table data structure implemented in ruby}
+    gem.summary = %Q{Lua tables for Ruby}
+    gem.description = %Q{A table data structure implemented in Ruby}
     gem.email = "nick.loves.rails@gmail.com"
     gem.homepage = "http://github.com/Abica/ruby-tables"
     gem.authors = [ "Nicholas Wright" ]
