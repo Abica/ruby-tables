@@ -91,6 +91,30 @@ describe Table do
     end
   end
 
+  describe "#insert" do
+    it "should insert a value into the table at index" do
+      t = Table[ 1, 2, 3, 4 ]
+      t.insert 2, 5
+      t[ 2 ].should == 5
+      t.size.should == 5
+    end
+
+    it "should be able to insert multiple values into the table at index" do
+      t = Table[ 1, 2, 3, 4 ]
+      old_size = t.size
+      vals_to_add = ( 1..10 ).map
+      t.insert 2, *vals_to_add
+      t[ 2, 10 ].should == vals_to_add
+      t.size.should == old_size + vals_to_add.size
+    end
+
+    it "should insert a value into the table at key" do
+      t = Table[ :a => 1, :b => 2 ]
+      t.insert :c, 1000
+      t.c.should == 1000
+    end
+  end
+
   describe "#pop" do
     it "removes and returns the last non pair element" do
       t = Table[ 1, 2, 3, 4 ]

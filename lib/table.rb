@@ -118,6 +118,32 @@ class Table
 
   alias push <<
 
+  # insert an element into a table at a key or index
+  #
+  # if an index is used, multiple values can be added at that location:
+  #
+  #   t = Table[ 1, 2, 3, 4 ]
+  #   t.insert 2, 1000, 2000, 3000
+  #   t #=> Table[1, 2, 1000, 2000, 3000, 3, 4]
+  #
+  #   t.insert 4, 1000000
+  #   t #=> Table[1, 2, 1000, 2000, 1000000, 3000, 3, 4]
+  #
+  # when a key is used, the functionality is identical to #[]=:
+  #
+  #   t.insert :a, "apple"
+  #   t.insert :b, "banana"
+  #   t.a #=> "apple"
+  #   t.b #=> "banana"
+  #   t => Table[1, 2, 1000, 2000, 1000000, 3000, 3, 4, {:b=>"banana", :a=>"apple"}]
+  def insert key, *args
+    if key.kind_of? Integer
+      @values.insert key, *args
+    else
+      process_hash key => args.first
+    end
+  end
+
   # removes and returns the last non pair element
   #
   #   t = Table[ 1, 2, 3 ]
