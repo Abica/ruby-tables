@@ -15,7 +15,7 @@ describe Table do
     end
   end
 
-  describe "#[]" do
+  describe "#self.[]" do
     it "returns the value at index" do
       @array_vals.each_with_index do | val, i |
         @table[ i ].should == val
