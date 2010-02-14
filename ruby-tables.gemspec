@@ -18,7 +18,9 @@ Gem::Specification.new do |s|
   s.files = [
     ".gitignore",
      "README.rdoc",
+     "Rakefile",
      "lib/table.rb",
+     "ruby-tables.gemspec",
      "spec/spec_helper.rb",
      "spec/table_spec.rb"
   ]
