@@ -26,6 +26,11 @@ describe Table do
       @table[ :k ].should == @args[ 5 ][ :k ]
       @table[ :v ].should == @args[ 8 ][ :v ]
     end
+
+    it "returns an array when sliced" do
+      @table[ 1..3 ].should == @array_vals[ 1..3 ]
+      @table[ 4, 5 ].should == @array_vals[ 4, 5 ]
+    end
   end
 
   describe "#[]=" do
@@ -140,6 +145,13 @@ describe Table do
       t = Table[ *rand_vals ]
       t.to_a.should_not == sorted_vals
       t.sort.should == sorted_vals
+    end
+  end
+
+  describe "#slice" do
+    it "returns an sub array based" do
+      @table.slice( 1..3 ).should == @array_vals.slice( 1..3 )
+      @table.slice( 4, 5 ).should == @array_vals.slice( 4, 5 )
     end
   end
 

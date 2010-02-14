@@ -1,11 +1,38 @@
-# Implements a table data structure
+#
+# A table is a basically a combination of an array and a hash.
+#
+# Actually a possibly easier way to think of them would be as
+# Arrays that have some metadata in the form of a hash.
+#
+# You can also access symbolized hash keys with dot notation, making them
+# really convenient for a lot of things.
+#
+# For instance:
+#
+#   t = Table[ 1, 2, 3, 4, { :a => "1", :b => "2" }, 7, 8 ]
+#   t #=> Table[1, 2, 3, 4, 7, 8, :b=>"2", :a=>"1"]
+#
+#   t.size #=> 8
+#   t.b #=> "2"
+#
+#   t.b = Table[ 255, 0, 0, { :color => "red" } ]
+#   t.b.color #=> "red"
+#   r, b, g = *t.b
+#
+#   t #=> Table[1, 2, 3, 4, 7, 8, :b=>Table[255, 0, 0, :color=>"red"], :a=>"1"]
+#
+#   t << ( 'a'..'f' ).map
+#   t.last #=> ["a", "b", "c", "d", "e", "f"]
+#   t[ -3 ] #=> 5
+#
+#   t #=> Table[1, 2, 3, 4, 7, 8, ["a", "b", "c", "d", "e", "f"], :b=>Table[255, 0, 0, :color=>"red"], :a=>"1", :c=>"3"]
 class Table
   include Enumerable
 
   # takes a comma separated list of arrays and hashes and returns a table
   #
-  # example:
-  #   Table[ 1, 2, 3, 4, { :a => 3, :b => 5 }, 7, 8, { :c => 33 } ]
+  #   t = Table[ 1, 2, 3, 4, { :a => 3, :b => 5 }, 7, 8, { :c => 33 } ]
+  #   t #=> Table[1, 2, 3, 4, 7, 8, :a=>3, :b=>5, :c=>33]
   def self.[] *args
     new *args
   end
@@ -26,11 +53,16 @@ class Table
   #
   #   t.a #=> 4
   #   t.b #=> 5
-  def [] key
-    if key.is_a? Integer
-      @values[ key ]
-    else
-      @records[ key ]
+  def [] key, *rest
+    return @values.slice( key, *rest ) if rest.any?
+
+    case key
+      when Range
+        @values.slice key
+      when Integer
+        @values[ key ]
+      else
+        @records[ key ]
     end
   end
 
@@ -38,8 +70,10 @@ class Table
   # if no entry exists for the given key or index then one is created
   #
   #   t = Table[ :a => "abcde", :b => 44332211 ]
+  #
   #   t[ :a ] = 43
   #   t[ :a ] #=> 43
+  #
   #   t[ 0 ] = 54
   #   t.first #=> 54
   #
@@ -62,17 +96,25 @@ class Table
     end
   end
 
-  # add a hash or value to this table
+  # adds a hash or value to a table
   #
   #   t = Table[ 1, 2, 3 ]
+  #
   #   t << { :a => 4, :b => 4 }
+  #   t.pairs #=> { :a => 4, :b => 4 }
+  #
+  #   t << 40000
+  #   t.to_a #=> [ 1, 2, 3, 40000 ]
   def << arg
     process arg
   end
 
   # combines 2 tables
   #
-  #   Table[ :a => 4, :b => 5 ] + Table[ 1, 2, 3, 4, { :c => 4 } ]
+  #   t = Table[ :a => 4, :b => 5 ] + Table[ 1, 2, 3, 4, { :c => 4 } ]
+  #
+  #   t.pairs #=> { :a => 4, :b => 5, :c => 4 }
+  #   t.to_a #=> [ 1, 2, 3, 4 ]
   def + other
     values = self.to_a + other.to_a 
     Table[ self.pairs, other.pairs, *values ]
@@ -117,12 +159,30 @@ class Table
     @values.sort &block
   end
 
+  # slice a table like an array
+  #
+  #   t = Table[ 2, 23, 54, { :a => 4 }, 49 ]
+  #   t[ 2..4 ] #=> [ 54, 49 ]
+  def slice *args
+    @values.slice *args
+  end
+
   # iterate through the key => value pairs in the table
+  #
+  #   t = Table[ 1, 2, { :a => "cat", :b => "dog" } ]
+  #
+  #   t.each_pair { | k, v | print k, v }
+  #   #=> bdogacat
   def each_pair &block
     @records.each_pair &block
   end
 
   # iterate through the hash keys in the table 
+  #
+  #   t = Table[ 1, 2, { :a => "cat", :b => "dog" } ]
+  #
+  #   t.each_key { | k | print k }
+  #   #=> ab
   def each_key &block
     @records.each_key &block
   end
@@ -149,6 +209,13 @@ class Table
   #   t.values #=> [ 55, 77, 22 ]
   def values
     @records.values
+  end
+
+  def inspect
+    str = []
+    str << map { | i | i.inspect } if any?
+    str << pairs.map { | k, v | "#{ k.inspect }=>#{ v.inspect }" } if pairs.any?
+    "Table[#{ str.join( ", " ) }]"
   end
 
   private
