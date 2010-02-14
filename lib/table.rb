@@ -152,6 +152,7 @@ class Table
   end
 
   private
+    # adds +args+ into the table
     def process *args
       args.each do | arg |
         if arg.is_a? Hash
@@ -162,6 +163,11 @@ class Table
       end
     end
 
+    # adds a hash entries to the table and creates
+    # setters and getters for them if the keys are symbolized
+    #
+    # any keys that are numeric are wrapped in an array so as
+    # not to overlap array indices which could get confusing
     def process_hash hsh
       hsh.each do | key, value |
         key = [ key ] if key.is_a? Integer
