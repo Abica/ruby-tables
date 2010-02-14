@@ -53,13 +53,7 @@ Use it:
 
   t1.users.first.name #=> Tom
   t1.users.first.name = "Alex"
-  t1.users.each do | user |
-    puts user.name
-  end
-
-  #=> Alex
-  #=> Dick
-  #=> Harry
+  t1.users.map { | u | u.name }.join( ", " ) #=> Alex, Dick, Harry
 
   # as a combination of an array and a hash
   t2 = Table[ 1, 2, 3, 4, 5, { :a => 1000, :b => 2000 }, 6, 7, { :c => 50, :d => 60 }, 8, 9 ]
