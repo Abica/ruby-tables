@@ -10,7 +10,7 @@
 # For instance:
 #
 #   t = Table[ 1, 2, 3, 4, { :a => "1", :b => "2" }, 7, 8 ]
-#   t #=> Table[1, 2, 3, 4, 7, 8, :b=>"2", :a=>"1"]
+#   t #=> Table[1, 2, 3, 4, 7, 8, {:b=>"2", :a=>"1"}]
 #
 #   t.size #=> 8
 #   t.b #=> "2"
@@ -18,14 +18,16 @@
 #   t.b = Table[ 255, 0, 0, { :color => "red" } ]
 #   t.b.color #=> "red"
 #   r, b, g = *t.b
+#   print r, g, b #=> 25500
 #
-#   t #=> Table[1, 2, 3, 4, 7, 8, :b=>Table[255, 0, 0, :color=>"red"], :a=>"1"]
+#   t #=> Table[1, 2, 3, 4, 7, 8, {:b=>Table[255, 0, 0, {:color=>"red"}], :a=>"1", :c=>"3"}]
 #
-#   t << ( 'a'..'f' ).map
-#   t.last #=> ["a", "b", "c", "d", "e", "f"]
-#   t[ -3 ] #=> 5
+#   t << %{ a b c d }
+#   t.last #=> ["a", "b", "c", "d"]
+#   t[ -3 ] #=> 7
 #
-#   t #=> Table[1, 2, 3, 4, 7, 8, ["a", "b", "c", "d", "e", "f"], :b=>Table[255, 0, 0, :color=>"red"], :a=>"1", :c=>"3"]
+#   t #=> Table[1, 2, 3, 4, 7, 8, ["a", "b", "c", "d"], {:b=>Table[255, 0, 0, {:color=>"red"}], :a=>"1", :c=>"3"}]
+#
 class Table
   include Enumerable
 
@@ -214,7 +216,7 @@ class Table
   def inspect
     str = []
     str << map { | i | i.inspect } if any?
-    str << pairs.map { | k, v | "#{ k.inspect }=>#{ v.inspect }" } if pairs.any?
+    str << "{#{ pairs.map { | k, v | "#{ k.inspect }=>#{ v.inspect }" } }}" if pairs.any?
     "Table[#{ str.join( ", " ) }]"
   end
 
