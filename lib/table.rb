@@ -48,6 +48,8 @@ class Table
     @values.size
   end
 
+  alias length size
+
   def each &block
     @values.each &block
   end

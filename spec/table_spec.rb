@@ -126,6 +126,10 @@ describe Table do
     it "should return the number of array elements in the table" do
       @table.size.should == @array_vals.size
     end
+
+    it "should be the same as length" do
+      @table.size.should == @table.length
+    end
   end
 
   describe "#sort" do
