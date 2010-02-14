@@ -6,6 +6,9 @@ Tables are essentially a combination of hashes and arrays.
 They're more for convenience than anything else, but they provide setters and getters
 for symbolized keys in hashes and uniform hash and array like access.
 
+Any methods from the Enumerable module should work and will treat the table as an array,
+ignoring any pairs inside it.
+
 = Caveats
 As in lua, hash keys cannot be numeric indices. If you intend to use numeric hash keys,
 they should be inside an array, such as:
