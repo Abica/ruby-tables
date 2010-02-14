@@ -1,10 +1,12 @@
 require 'rubygems'
 require 'rake'
+
+version = File.read('VERSION')
  
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.version = "0.1.1"
+    gem.version = version
     gem.name = "ruby-tables"
     gem.summary = %Q{Lua tables for Ruby}
     gem.description = %Q{A table data structure implemented in Ruby}
@@ -23,8 +25,6 @@ task :default => :spec
  
 require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
- 
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title = "ruby-tables #{version}"
   rdoc.rdoc_files.include('README*')
